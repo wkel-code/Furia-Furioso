@@ -14,40 +14,42 @@ type MediaItem = {
 const GallerySection = () => {
   const [selectedItem, setSelectedItem] = useState<MediaItem | null>(null);
 
-  // Placeholder media data - in a real app, this would come from an API
+  // Updated media data with more reliable image sources
   const mediaItems: MediaItem[] = [
     {
       id: 1,
       type: "image",
-      thumbnail: "https://source.unsplash.com/1470071459604-3b5ec3a7fe05",
+      thumbnail: "https://images.unsplash.com/photo-1560253414-f65d1f5a1a37?ixlib=rb-4.0.3",
       title: "Vitória no Major",
       description: "FURIA celebrando sua vitória no Major de CS:GO",
     },
     {
       id: 2,
       type: "image",
-      thumbnail: "https://source.unsplash.com/1526374965328-7f61d4dc18c5",
+      thumbnail: "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3",
       title: "Concentração Total",
       description: "Jogadores se concentrando antes da partida decisiva",
     },
     {
       id: 3,
       type: "video",
-      thumbnail: "https://source.unsplash.com/1487058792275-0ad4aaf24ca7",
+      thumbnail: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3",
+      source: "https://www.youtube.com/embed/dQw4w9WgXcQ",
       title: "Highlights ESL Pro League",
       description: "Melhores momentos da FURIA na ESL Pro League",
     },
     {
       id: 4,
       type: "image",
-      thumbnail: "https://source.unsplash.com/1501854140801-50d01698950b",
+      thumbnail: "https://images.unsplash.com/photo-1551818255-e6e10975bc17?ixlib=rb-4.0.3",
       title: "Treino Tático",
       description: "Equipe durante sessão de treino tático",
     },
     {
       id: 5,
       type: "video",
-      thumbnail: "https://source.unsplash.com/1500673922987-e212871fec22",
+      thumbnail: "https://images.unsplash.com/photo-1580327344541-e41d04704e53?ixlib=rb-4.0.3",
+      source: "https://www.youtube.com/embed/dQw4w9WgXcQ",
       title: "Entrevista Exclusiva",
       description: "Entrevista com os jogadores após classificação",
     },
@@ -86,6 +88,10 @@ const GallerySection = () => {
                   src={item.thumbnail}
                   alt={item.title}
                   className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                  onError={(e) => {
+                    // Fallback image if the main one fails to load
+                    (e.target as HTMLImageElement).src = "https://via.placeholder.com/640x360/090909/FFBA49?text=FURIA+Gaming";
+                  }}
                 />
                 {item.type === "video" && (
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -128,13 +134,26 @@ const GallerySection = () => {
                   src={selectedItem.thumbnail} 
                   alt={selectedItem.title} 
                   className="w-full rounded"
+                  onError={(e) => {
+                    // Fallback image if the main one fails to load
+                    (e.target as HTMLImageElement).src = "https://via.placeholder.com/1280x720/090909/FFBA49?text=FURIA+Gaming";
+                  }}
                 />
               ) : (
                 <div className="relative aspect-video">
-                  <div className="absolute inset-0 flex items-center justify-center bg-furia-gray/20 rounded">
-                    <Play size={48} className="text-furia-accent" />
-                    <p className="absolute bottom-4 text-sm text-furia-light">Vídeo simulado - Em uma aplicação real, aqui seria exibido o vídeo</p>
-                  </div>
+                  {selectedItem.source ? (
+                    <iframe
+                      src={selectedItem.source}
+                      title={selectedItem.title}
+                      className="w-full h-full rounded"
+                      allowFullScreen
+                    ></iframe>
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center bg-furia-gray/20 rounded">
+                      <Play size={48} className="text-furia-accent" />
+                      <p className="absolute bottom-4 text-sm text-furia-light">Vídeo simulado - Em uma aplicação real, aqui seria exibido o vídeo</p>
+                    </div>
+                  )}
                 </div>
               )}
               <p className="mt-4 text-furia-gray">{selectedItem.description}</p>

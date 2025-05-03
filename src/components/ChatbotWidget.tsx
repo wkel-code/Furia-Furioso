@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { MessageSquare, Send, X, MinusCircle } from "lucide-react";
 
 type Message = {
@@ -21,6 +21,14 @@ const ChatbotWidget = () => {
       timestamp: new Date(),
     },
   ]);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Auto scroll to the bottom when messages change
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
 
   const toggleChat = () => {
     if (isMinimized) {
@@ -146,6 +154,7 @@ const ChatbotWidget = () => {
                 </div>
               </div>
             ))}
+            <div ref={messagesEndRef} />
           </div>
           
           {/* Input */}
@@ -160,7 +169,7 @@ const ChatbotWidget = () => {
               />
               <button
                 type="submit"
-                className="bg-furia-accent text-furia-dark p-2 rounded-full hover:bg-furia-accent/90"
+                className="bg-furia-accent text-furia-dark p-2 rounded-full hover:bg-furia-accent/90 transition-colors"
                 disabled={!inputMessage.trim()}
                 aria-label="Send message"
               >
