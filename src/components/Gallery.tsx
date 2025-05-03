@@ -14,44 +14,52 @@ type MediaItem = {
 const GallerySection = () => {
   const [selectedItem, setSelectedItem] = useState<MediaItem | null>(null);
 
-  // Updated media data with more reliable image sources
+  // Updated media data with real FURIA CS:GO content
   const mediaItems: MediaItem[] = [
     {
       id: 1,
       type: "image",
-      thumbnail: "https://images.unsplash.com/photo-1560253414-f65d1f5a1a37?ixlib=rb-4.0.3",
-      title: "Vitória no Major",
-      description: "FURIA celebrando sua vitória no Major de CS:GO",
+      thumbnail: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      title: "FURIA vs Astralis - ESL Pro League",
+      description: "Time FURIA enfrentando a Astralis na ESL Pro League Season 14",
     },
     {
       id: 2,
       type: "image",
-      thumbnail: "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3",
-      title: "Concentração Total",
-      description: "Jogadores se concentrando antes da partida decisiva",
+      thumbnail: "https://i.ibb.co/Dfbp97z/furia-team.jpg",
+      title: "Equipe FURIA CS:GO",
+      description: "Line-up atual da FURIA Esports na divisão de Counter-Strike",
     },
     {
       id: 3,
       type: "video",
-      thumbnail: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3",
-      source: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      title: "Highlights ESL Pro League",
-      description: "Melhores momentos da FURIA na ESL Pro League",
+      thumbnail: "https://i.ibb.co/9yrZjnv/furia-major.jpg",
+      source: "https://www.youtube.com/embed/sqSC4gvRNoU",
+      title: "FURIA no PGL Major Stockholm",
+      description: "Melhores momentos da FURIA no PGL Major Stockholm 2021",
     },
     {
       id: 4,
       type: "image",
-      thumbnail: "https://images.unsplash.com/photo-1551818255-e6e10975bc17?ixlib=rb-4.0.3",
-      title: "Treino Tático",
-      description: "Equipe durante sessão de treino tático",
+      thumbnail: "https://i.ibb.co/jgK4BWD/furia-celebration.jpg",
+      title: "Comemorando a Vitória",
+      description: "Jogadores da FURIA celebrando após vitória em partida decisiva",
     },
     {
       id: 5,
       type: "video",
-      thumbnail: "https://images.unsplash.com/photo-1580327344541-e41d04704e53?ixlib=rb-4.0.3",
-      source: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      title: "Entrevista Exclusiva",
-      description: "Entrevista com os jogadores após classificação",
+      thumbnail: "https://i.ibb.co/Qn0m6Fz/furia-highlight.jpg",
+      source: "https://www.youtube.com/embed/M-P4QwWKmsE",
+      title: "KSCERATO - Highlights",
+      description: "Momentos impressionantes do KSCERATO pelos torneios de CS:GO",
+    },
+    {
+      id: 6,
+      type: "video",
+      thumbnail: "https://i.ibb.co/m5xMJkw/furia-fragmovie.jpg",
+      source: "https://www.youtube.com/embed/2gQqR9H_xYs",
+      title: "FURIA - Top Plays 2023",
+      description: "Compilação das melhores jogadas da FURIA em 2023",
     },
   ];
 
@@ -68,12 +76,12 @@ const GallerySection = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center gap-2 mb-8">
           <Images className="text-furia-accent" size={28} />
-          <h2 className="font-display text-3xl font-bold">Momentos FURIA</h2>
+          <h2 className="font-display text-3xl font-bold">FURIA CS:GO</h2>
         </div>
         
         <p className="text-furia-gray mb-10 max-w-2xl">
           Explore os momentos mais marcantes da FURIA nos principais campeonatos de CS:GO. 
-          Jogadas épicas, vitórias memoráveis e bastidores exclusivos.
+          Jogadas épicas, vitórias memoráveis e bastidores exclusivos do nosso time.
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -90,7 +98,7 @@ const GallerySection = () => {
                   className="w-full h-full object-cover transition-transform group-hover:scale-105"
                   onError={(e) => {
                     // Fallback image if the main one fails to load
-                    (e.target as HTMLImageElement).src = "https://via.placeholder.com/640x360/090909/FFBA49?text=FURIA+Gaming";
+                    (e.target as HTMLImageElement).src = "https://via.placeholder.com/640x360/090909/FFBA49?text=FURIA+CS:GO";
                   }}
                 />
                 {item.type === "video" && (
@@ -136,7 +144,7 @@ const GallerySection = () => {
                   className="w-full rounded"
                   onError={(e) => {
                     // Fallback image if the main one fails to load
-                    (e.target as HTMLImageElement).src = "https://via.placeholder.com/1280x720/090909/FFBA49?text=FURIA+Gaming";
+                    (e.target as HTMLImageElement).src = "https://via.placeholder.com/1280x720/090909/FFBA49?text=FURIA+CS:GO";
                   }}
                 />
               ) : (
@@ -151,7 +159,7 @@ const GallerySection = () => {
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center bg-furia-gray/20 rounded">
                       <Play size={48} className="text-furia-accent" />
-                      <p className="absolute bottom-4 text-sm text-furia-light">Vídeo simulado - Em uma aplicação real, aqui seria exibido o vídeo</p>
+                      <p className="absolute bottom-4 text-sm text-furia-light">Vídeo indisponível</p>
                     </div>
                   )}
                 </div>
