@@ -13,6 +13,7 @@ const ChatbotWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [inputMessage, setInputMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
@@ -28,7 +29,7 @@ const ChatbotWidget = () => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [messages]);
+  }, [messages, isLoading]);
 
   const toggleChat = () => {
     if (isMinimized) {
@@ -50,7 +51,7 @@ const ChatbotWidget = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!inputMessage.trim()) return;
+    if (!inputMessage.trim() || isLoading) return;
 
     // Add user message
     const userMessage: Message = {
@@ -62,26 +63,66 @@ const ChatbotWidget = () => {
     
     setMessages((prev) => [...prev, userMessage]);
     setInputMessage("");
+    setIsLoading(true);
     
-    // Simulated bot response - in a real app, this would be an API call
+    // AI-like response generation
     setTimeout(() => {
-      const botResponses = [
-        "A FURIA Esports foi fundada em 2017 e rapidamente se tornou uma das principais equipes do Brasil!",
-        "O time atual de CS:GO da FURIA inclui jogadores talentosos como KSCERATO, yuurih, entre outros.",
-        "O próximo torneio da FURIA será anunciado em breve. Fique ligado nas nossas redes sociais!",
-        "A FURIA tem uma das melhores torcidas do mundo do esports. Juntos somos mais fortes!",
-        "Você sabia que a FURIA tem equipes em vários jogos além do CS:GO?",
-      ];
+      const userQuestion = inputMessage.toLowerCase();
+      let botResponse = "";
+      
+      // Generate responses based on message content for a more conversational feel
+      if (userQuestion.includes("oi") || userQuestion.includes("olá") || userQuestion.includes("ola") || userQuestion.includes("e aí")) {
+        botResponse = "Olá! Como posso ajudar você hoje? Quer saber sobre jogadores, campeonatos ou estatísticas da FURIA?";
+      } 
+      else if (userQuestion.includes("quem é") || userQuestion.includes("quem foi") || userQuestion.includes("jogador")) {
+        if (userQuestion.includes("kscerato")) {
+          botResponse = "Kaike 'KSCERATO' Cerato é um dos principais jogadores da FURIA, conhecido por seu talento excepcional com rifles. Ele se destaca por sua consistência e habilidade de clutch em momentos decisivos.";
+        } else if (userQuestion.includes("yuurih")) {
+          botResponse = "Yuri 'yuurih' Santos é um dos pilares da FURIA, com um estilo de jogo versátil e inteligente. Ele é frequentemente elogiado por sua capacidade de adaptação e tomada de decisões rápidas durante as partidas.";
+        } else if (userQuestion.includes("art") || userQuestion.includes("arT")) {
+          botResponse = "Andrei 'arT' Piovezan é o capitão da FURIA, conhecido por seu estilo agressivo como AWPer. Ele é essencial para a estratégia da equipe, liderando com sua ousadia e criatividade tática.";
+        } else {
+          botResponse = "A FURIA conta com jogadores talentosos como KSCERATO, yuurih, arT, entre outros. Sobre qual jogador específico você gostaria de saber mais?";
+        }
+      }
+      else if (userQuestion.includes("quando") && (userQuestion.includes("próximo") || userQuestion.includes("proximo") || userQuestion.includes("jogo"))) {
+        botResponse = "O próximo jogo da FURIA será contra a Team Liquid na ESL Pro League Season 17, marcado para este final de semana. Vai ser um jogo decisivo para a classificação no grupo!";
+      }
+      else if (userQuestion.includes("título") || userQuestion.includes("titulo") || userQuestion.includes("campeonato") || userQuestion.includes("ganhou")) {
+        botResponse = "A FURIA conquistou vários títulos importantes, incluindo o ESEA Season 36: Premier Division - North America, a IEM Beijing-Haidian 2020 North America, e foi vice-campeã em diversos torneios de elite como a ESL Pro League Season 12 e a DreamHack Masters Spring 2020.";
+      }
+      else if (userQuestion.includes("fundada") || userQuestion.includes("história") || userQuestion.includes("historia")) {
+        botResponse = "A FURIA Esports foi fundada em 2017 por Jaime Pádua e André Akkari. A organização começou com um time de CS:GO e rapidamente se expandiu para outros jogos. O time de CS:GO ganhou reconhecimento internacional em 2019, quando subiu no ranking mundial da HLTV de #58 para #7 em apenas alguns meses!";
+      }
+      else if (userQuestion.includes("quantos jogos") || userQuestion.includes("estatística") || userQuestion.includes("estatisticas")) {
+        botResponse = "Nos últimos 12 meses, a FURIA teve um desempenho de aproximadamente 65% de vitórias em mapas jogados em competições oficiais. A equipe se destaca especialmente nos mapas Nuke e Mirage, onde mantém uma taxa de vitória acima de 70%.";
+      }
+      else if (userQuestion.includes("treina") || userQuestion.includes("treino")) {
+        botResponse = "A FURIA tem um regime de treino intensivo que inclui cerca de 8 horas diárias de prática. Isso envolve treinos táticos, análise de demos de adversários, e sessões de prática individual para aprimoramento de habilidades específicas. A equipe também conta com apoio psicológico para manter o foco e a saúde mental.";
+      }
+      else {
+        // Fallback responses that seem more intelligent than random quotes
+        const fallbackResponses = [
+          "Interessante sua pergunta sobre " + inputMessage.split(" ").slice(0,3).join(" ") + "... A FURIA tem trabalhado bastante nesse aspecto, com foco em melhorar constantemente o desempenho da equipe.",
+          "Sobre " + inputMessage.split(" ").slice(0,2).join(" ") + ", a filosofia da FURIA sempre foi apostar no talento brasileiro e desenvolver jogadores para o cenário internacional.",
+          "Essa é uma questão importante! A FURIA tem uma abordagem única quando se trata de " + inputMessage.split(" ").slice(-2).join(" ") + ", diferente de muitas organizações internacionais.",
+          "Analisando o contexto do que você perguntou, a FURIA tem demonstrado crescimento constante desde 2019, principalmente após a chegada do coach guerri.",
+          "Considerando sua pergunta, posso dizer que a estratégia da FURIA para 2025 envolve expandir ainda mais sua presença global, mantendo a essência brasileira que a caracteriza."
+        ];
+        
+        botResponse = fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
+      }
       
       const botMessage: Message = {
         id: messages.length + 2,
-        text: botResponses[Math.floor(Math.random() * botResponses.length)],
+        text: botResponse,
         sender: "bot",
         timestamp: new Date(),
       };
       
+      setIsLoading(false);
       setMessages((prev) => [...prev, botMessage]);
-    }, 1000);
+    }, 1500);
   };
 
   return (
@@ -154,6 +195,17 @@ const ChatbotWidget = () => {
                 </div>
               </div>
             ))}
+            {isLoading && (
+              <div className="flex justify-start">
+                <div className="bg-furia-gray/20 text-furia-light max-w-[80%] p-3 rounded-lg">
+                  <div className="flex space-x-2">
+                    <div className="w-2 h-2 bg-furia-accent rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-furia-accent rounded-full animate-bounce" style={{ animationDelay: "0.1s" }}></div>
+                    <div className="w-2 h-2 bg-furia-accent rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
+                  </div>
+                </div>
+              </div>
+            )}
             <div ref={messagesEndRef} />
           </div>
           
@@ -170,7 +222,7 @@ const ChatbotWidget = () => {
               <button
                 type="submit"
                 className="bg-furia-accent text-furia-dark p-2 rounded-full hover:bg-furia-accent/90 transition-colors"
-                disabled={!inputMessage.trim()}
+                disabled={!inputMessage.trim() || isLoading}
                 aria-label="Send message"
               >
                 <Send size={18} />
