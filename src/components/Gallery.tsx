@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Gallery as GalleryIcon, Play, X } from "lucide-react";
+import { Images, Play, X } from "lucide-react";
 
 type MediaItem = {
   id: number;
@@ -65,7 +65,7 @@ const GallerySection = () => {
     <section className="py-16 bg-furia-dark relative">
       <div className="container mx-auto px-4">
         <div className="flex items-center gap-2 mb-8">
-          <GalleryIcon className="text-furia-accent" size={28} />
+          <Images className="text-furia-accent" size={28} />
           <h2 className="font-display text-3xl font-bold">Momentos FURIA</h2>
         </div>
         
