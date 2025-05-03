@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Images, Play, X } from "lucide-react";
+import { Images, Play, X, Video } from "lucide-react";
 
 type MediaItem = {
   id: number;
@@ -13,13 +13,14 @@ type MediaItem = {
 
 const GallerySection = () => {
   const [selectedItem, setSelectedItem] = useState<MediaItem | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Updated media data with real FURIA CS:GO content
   const mediaItems: MediaItem[] = [
     {
       id: 1,
       type: "image",
-      thumbnail: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      thumbnail: "https://i.ibb.co/H4LFCyL/furia-major-stage.jpg",
       title: "FURIA vs Astralis - ESL Pro League",
       description: "Time FURIA enfrentando a Astralis na ESL Pro League Season 14",
     },
@@ -34,7 +35,7 @@ const GallerySection = () => {
       id: 3,
       type: "video",
       thumbnail: "https://i.ibb.co/9yrZjnv/furia-major.jpg",
-      source: "https://www.youtube.com/embed/sqSC4gvRNoU",
+      source: "https://www.youtube.com/embed/sqSC4gvRNoU?autoplay=1",
       title: "FURIA no PGL Major Stockholm",
       description: "Melhores momentos da FURIA no PGL Major Stockholm 2021",
     },
@@ -49,7 +50,7 @@ const GallerySection = () => {
       id: 5,
       type: "video",
       thumbnail: "https://i.ibb.co/Qn0m6Fz/furia-highlight.jpg",
-      source: "https://www.youtube.com/embed/M-P4QwWKmsE",
+      source: "https://www.youtube.com/embed/M-P4QwWKmsE?autoplay=1",
       title: "KSCERATO - Highlights",
       description: "Momentos impressionantes do KSCERATO pelos torneios de CS:GO",
     },
@@ -57,18 +58,37 @@ const GallerySection = () => {
       id: 6,
       type: "video",
       thumbnail: "https://i.ibb.co/m5xMJkw/furia-fragmovie.jpg",
-      source: "https://www.youtube.com/embed/2gQqR9H_xYs",
+      source: "https://www.youtube.com/embed/2gQqR9H_xYs?autoplay=1",
       title: "FURIA - Top Plays 2023",
       description: "Compilação das melhores jogadas da FURIA em 2023",
+    },
+    {
+      id: 7,
+      type: "image",
+      thumbnail: "https://i.ibb.co/K6NVxwV/furia-trophy.jpg",
+      title: "Conquista do Campeonato",
+      description: "FURIA erguendo o troféu após conquista importante",
+    },
+    {
+      id: 8,
+      type: "video",
+      thumbnail: "https://i.ibb.co/28j4f5D/furia-clutch.jpg",
+      source: "https://www.youtube.com/embed/qDQm9urCvUo?autoplay=1",
+      title: "arT - Momentos de Clutch",
+      description: "Jogadas decisivas do capitão arT em momentos cruciais",
     },
   ];
 
   const openModal = (item: MediaItem) => {
     setSelectedItem(item);
+    setIsModalOpen(true);
+    document.body.style.overflow = "hidden"; // Prevent scrolling while modal is open
   };
 
   const closeModal = () => {
     setSelectedItem(null);
+    setIsModalOpen(false);
+    document.body.style.overflow = ""; // Re-enable scrolling
   };
 
   return (
@@ -88,7 +108,7 @@ const GallerySection = () => {
           {mediaItems.map((item) => (
             <div 
               key={item.id} 
-              className="furia-card group cursor-pointer"
+              className="furia-card group cursor-pointer transform transition-all duration-300 hover:translate-y-[-5px]"
               onClick={() => openModal(item)}
             >
               <div className="relative overflow-hidden h-60">
@@ -104,7 +124,7 @@ const GallerySection = () => {
                 {item.type === "video" && (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="bg-furia-dark/40 p-4 rounded-full">
-                      <Play size={24} className="text-furia-accent" />
+                      <Play size={32} className="text-furia-accent" />
                     </div>
                   </div>
                 )}
@@ -112,6 +132,17 @@ const GallerySection = () => {
               <div className="p-4">
                 <h3 className="font-display text-xl font-semibold">{item.title}</h3>
                 <p className="text-furia-gray mt-1 text-sm">{item.description}</p>
+                <div className="mt-2 flex items-center text-sm">
+                  {item.type === "video" ? (
+                    <span className="flex items-center text-furia-accent">
+                      <Video size={14} className="mr-1" /> Vídeo
+                    </span>
+                  ) : (
+                    <span className="flex items-center text-furia-light">
+                      <Images size={14} className="mr-1" /> Imagem
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
           ))}
@@ -123,14 +154,20 @@ const GallerySection = () => {
       </div>
       
       {/* Modal for media view */}
-      {selectedItem && (
-        <div className="fixed inset-0 bg-furia-dark/95 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
-          <div className="max-w-4xl w-full bg-furia-dark border border-furia-gray/20 rounded-lg overflow-hidden">
+      {isModalOpen && selectedItem && (
+        <div 
+          className="fixed inset-0 bg-furia-dark/95 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
+          onClick={() => closeModal()}
+        >
+          <div 
+            className="max-w-4xl w-full bg-furia-dark border border-furia-gray/20 rounded-lg overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="p-4 flex justify-between items-center border-b border-furia-gray/20">
               <h3 className="font-display text-xl">{selectedItem.title}</h3>
               <button 
                 onClick={closeModal}
-                className="text-furia-gray hover:text-furia-light"
+                className="text-furia-gray hover:text-furia-light p-2 rounded-full hover:bg-furia-gray/10 transition-colors"
                 aria-label="Fechar"
               >
                 <X size={24} />
@@ -155,6 +192,7 @@ const GallerySection = () => {
                       title={selectedItem.title}
                       className="w-full h-full rounded"
                       allowFullScreen
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     ></iframe>
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center bg-furia-gray/20 rounded">

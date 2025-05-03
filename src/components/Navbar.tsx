@@ -1,12 +1,13 @@
 
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const menuItems = [
     { name: "Home", path: "/" },
@@ -36,6 +37,10 @@ const Navbar = () => {
   useEffect(() => {
     setIsMenuOpen(false);
   }, [location.pathname]);
+
+  const handleLoginClick = () => {
+    navigate('/my-experience');
+  };
 
   return (
     <nav
@@ -68,7 +73,10 @@ const Navbar = () => {
           </div>
 
           {/* Login Button */}
-          <button className="hidden md:block button-primary">
+          <button 
+            className="hidden md:block button-primary"
+            onClick={handleLoginClick}
+          >
             Login
           </button>
 
@@ -103,7 +111,10 @@ const Navbar = () => {
                   {item.name}
                 </Link>
               ))}
-              <button className="button-primary mt-2 w-full">
+              <button 
+                className="button-primary mt-2 w-full"
+                onClick={handleLoginClick}
+              >
                 Login
               </button>
             </div>

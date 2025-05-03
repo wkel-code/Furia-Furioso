@@ -1,5 +1,6 @@
 
 import { ArrowDown } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const handleScrollDown = () => {
@@ -31,8 +32,8 @@ const Hero = () => {
             conheça os jogadores e viva uma experiência totalmente personalizada.
           </p>
           <div className="flex flex-wrap gap-4">
-            <button className="button-primary">Comece sua experiência</button>
-            <button className="button-secondary">Conheça os jogadores</button>
+            <Link to="/my-experience" className="button-primary">Comece sua experiência</Link>
+            <Link to="/about" className="button-secondary">Conheça os jogadores</Link>
           </div>
         </div>
       </div>
