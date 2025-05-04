@@ -19,7 +19,7 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({ messages, isLoading }) => {
   }, [messages]);
 
   return (
-    <div className="p-4 h-[400px] overflow-y-auto flex flex-col space-y-4">
+    <div className="p-4 h-[500px] overflow-y-auto flex flex-col space-y-4 scroll-smooth">
       {messages.map((message) => (
         <MessageItem key={message.id} message={message} />
       ))}

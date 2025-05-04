@@ -1,6 +1,13 @@
 
 import { useState } from "react";
-import { Images, X, Video } from "lucide-react";
+import { Images, X } from "lucide-react";
+import { 
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "@/components/ui/carousel";
 
 type MediaItem = {
   id: number;
@@ -14,63 +21,63 @@ const GallerySection = () => {
   const [selectedItem, setSelectedItem] = useState<MediaItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Updated media data with direct links to reliable images of FURIA CS:GO
+  // Updated media data with the new uploaded FURIA CS:GO images
   const mediaItems: MediaItem[] = [
     {
       id: 1,
       type: "image",
-      thumbnail: "/lovable-uploads/cd961942-460d-4fe8-acdc-156c36e32658.png",
-      title: "FURIA vs Astralis - ESL Pro League",
-      description: "Time FURIA enfrentando a Astralis na ESL Pro League Season 14",
+      thumbnail: "/lovable-uploads/724bdace-ba9a-4346-a6a4-09dd4588eb22.png",
+      title: "Torcida da FURIA",
+      description: "Torcedores celebrando com bandeiras da FURIA durante um evento de CS:GO",
     },
     {
       id: 2,
       type: "image",
-      thumbnail: "https://www.vpesports.com/wp-content/uploads/2020/08/FURIA-ESL-ONE-COLOGNE-2020.jpg",
-      title: "Equipe FURIA CS:GO",
-      description: "Line-up da FURIA Esports na divisão de Counter-Strike durante ESL One Cologne",
+      thumbnail: "/lovable-uploads/83c84f5b-b338-4090-90e3-f410a09bc20a.png",
+      title: "#FURIA - Torcida Organizada",
+      description: "Multidão de fãs com bandeiras e instrumentos apoiando a FURIA em campeonato",
     },
     {
       id: 3,
       type: "image",
-      thumbnail: "https://cdn.draft5.gg/images/competitions/pgl-stockholm-2021-furia-feature.jpg",
-      title: "FURIA no PGL Major Stockholm",
-      description: "Momento da FURIA no PGL Major Stockholm 2021",
+      thumbnail: "/lovable-uploads/80092bd4-7ce8-47a6-8e4f-71a29b505091.png",
+      title: "Pro Player em Ação",
+      description: "Jogador profissional da FURIA concentrado durante partida importante",
     },
     {
       id: 4,
       type: "image",
-      thumbnail: "https://valorant.draft5.gg/wp-content/uploads/2022/01/FURIA-11.jpg",
-      title: "Comemorando a Vitória",
-      description: "Jogadores da FURIA celebrando após vitória em partida decisiva",
+      thumbnail: "/lovable-uploads/32bb370c-0d0d-4226-8862-44a82ed50811.png",
+      title: "FURIA Campeã",
+      description: "Time da FURIA levantando troféu após vitória em campeonato internacional",
     },
     {
       id: 5,
       type: "image",
-      thumbnail: "https://static.hltv.org/images/galleries/1693-full/1575738541.3263.jpeg",
-      title: "KSCERATO - Destaques",
-      description: "KSCERATO, um dos principais jogadores da FURIA em CS:GO",
+      thumbnail: "/lovable-uploads/c544872c-4e0e-4709-9d9b-df655bfb9059.png",
+      title: "FURIA Elisa Masters",
+      description: "Jogadores da FURIA celebrando a conquista do título Elisa Masters",
     },
     {
       id: 6,
       type: "image",
-      thumbnail: "https://cdn.gamemeca.com/gmdata/0000/174/613/furia_1.jpg",
-      title: "FURIA - Top Plays 2023",
-      description: "Jogadores da FURIA em ação durante campeonato internacional",
+      thumbnail: "/lovable-uploads/36d5c3e1-e60f-4433-97b3-ac600851a4db.png",
+      title: "Jogador FURIA",
+      description: "Close em jogador com o distintivo da FURIA representando o time",
     },
     {
       id: 7,
       type: "image",
-      thumbnail: "https://www.theloadout.com/wp-content/sites/theloadout/2021/02/furia-logo.jpg",
-      title: "DreamHack Open Winter 2020",
-      description: "FURIA na conquista do título da DreamHack Open Winter 2020",
+      thumbnail: "/lovable-uploads/d9046df9-50a0-43ec-b0b4-63693298cc7c.png",
+      title: "Arena FURIA",
+      description: "Vista panorâmica de arena lotada durante campeonato da FURIA",
     },
     {
       id: 8,
       type: "image",
-      thumbnail: "https://static.hltv.org/images/galleries/12209-medium/1571016335.6666.jpeg",
-      title: "arT - Momentos de Clutch",
-      description: "Capitão arT durante partidas importantes representando a FURIA",
+      thumbnail: "/lovable-uploads/0977c389-9121-48c6-83ca-b34bc01bfaa6.png",
+      title: "Equipe em Celebração",
+      description: "Jogadores da FURIA celebrando com os fãs após vitória importante",
     },
   ];
 
@@ -96,10 +103,10 @@ const GallerySection = () => {
         
         <p className="text-furia-gray mb-10 max-w-2xl">
           Explore os momentos mais marcantes da FURIA nos principais campeonatos de CS:GO. 
-          Jogadas épicas, vitórias memoráveis e bastidores exclusivos do nosso time.
+          Jogadas épicas, vitórias memoráveis e o apoio da torcida que não para de crescer.
         </p>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {mediaItems.map((item) => (
             <div 
               key={item.id} 
@@ -121,18 +128,39 @@ const GallerySection = () => {
               <div className="p-4">
                 <h3 className="font-display text-xl font-semibold">{item.title}</h3>
                 <p className="text-furia-gray mt-1 text-sm">{item.description}</p>
-                <div className="mt-2 flex items-center text-sm">
-                  <span className="flex items-center text-furia-light">
-                    <Images size={14} className="mr-1" /> Imagem
-                  </span>
-                </div>
               </div>
             </div>
           ))}
         </div>
         
-        <div className="text-center mt-10">
-          <button className="button-secondary">Ver Mais</button>
+        {/* Featured Carousel Section */}
+        <div className="mt-20 max-w-5xl mx-auto">
+          <h3 className="font-display text-2xl font-bold mb-8 text-center">Destaques FURIA</h3>
+          
+          <Carousel className="max-w-3xl mx-auto">
+            <CarouselContent>
+              {mediaItems.map((item) => (
+                <CarouselItem key={`carousel-${item.id}`}>
+                  <div className="p-2">
+                    <div className="overflow-hidden rounded-lg">
+                      <img 
+                        src={item.thumbnail} 
+                        alt={item.title}
+                        className="w-full aspect-video object-cover"
+                        loading="lazy"
+                      />
+                      <div className="bg-furia-dark/80 p-4">
+                        <h4 className="font-display text-lg font-semibold">{item.title}</h4>
+                        <p className="text-furia-gray text-sm mt-1">{item.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-0" />
+            <CarouselNext className="right-0" />
+          </Carousel>
         </div>
       </div>
       
@@ -162,10 +190,6 @@ const GallerySection = () => {
                 alt={selectedItem.title} 
                 className="w-full rounded"
                 loading="eager"
-                onError={(e) => {
-                  console.error(`Failed to load modal image: ${selectedItem.thumbnail}`);
-                  (e.target as HTMLImageElement).src = "https://via.placeholder.com/1280x720/090909/FFBA49?text=FURIA+CS:GO";
-                }}
               />
               <p className="mt-4 text-furia-gray">{selectedItem.description}</p>
             </div>
