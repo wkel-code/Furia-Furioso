@@ -55,7 +55,7 @@ const Index = () => {
           </div>
           
           <div className="text-center mt-12">
-            <Link to="/my-experience" className="button-primary inline-flex items-center">
+            <Link to="/about" className="button-primary inline-flex items-center">
               Começar minha experiência
               <ArrowRight size={16} className="ml-2" />
             </Link>
@@ -74,13 +74,13 @@ const Index = () => {
               Junte-se à comunidade <span className="text-gradient">FURIA</span>
             </h2>
             <p className="text-furia-gray text-lg md:text-xl mb-8">
-              Crie sua conta agora e tenha acesso a conteúdos exclusivos, interaja com outros fãs
-              e viva uma experiência totalmente personalizada.
+              Conecte-se com outros fãs da FURIA e mantenha-se atualizado sobre as últimas notícias, 
+              jogos e eventos do seu time favorito.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <button className="button-primary">Criar Conta</button>
-              <Link to="/about" className="button-secondary">
-                Conhecer mais
+              <Link to="/about" className="button-primary">Saiba Mais</Link>
+              <Link to="/forum" className="button-secondary">
+                Fórum dos Fãs
               </Link>
             </div>
           </div>

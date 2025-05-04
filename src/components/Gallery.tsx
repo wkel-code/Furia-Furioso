@@ -15,7 +15,7 @@ const GallerySection = () => {
   const [selectedItem, setSelectedItem] = useState<MediaItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Updated media data with real FURIA CS:GO content
+  // Updated media data with direct links to images
   const mediaItems: MediaItem[] = [
     {
       id: 1,
@@ -35,7 +35,7 @@ const GallerySection = () => {
       id: 3,
       type: "video",
       thumbnail: "https://i.ibb.co/9yrZjnv/furia-major.jpg",
-      source: "https://www.youtube.com/embed/sqSC4gvRNoU?autoplay=1",
+      source: "https://www.youtube.com/embed/sqSC4gvRNoU",
       title: "FURIA no PGL Major Stockholm",
       description: "Melhores momentos da FURIA no PGL Major Stockholm 2021",
     },
@@ -50,7 +50,7 @@ const GallerySection = () => {
       id: 5,
       type: "video",
       thumbnail: "https://i.ibb.co/Qn0m6Fz/furia-highlight.jpg",
-      source: "https://www.youtube.com/embed/M-P4QwWKmsE?autoplay=1",
+      source: "https://www.youtube.com/embed/M-P4QwWKmsE",
       title: "KSCERATO - Highlights",
       description: "Momentos impressionantes do KSCERATO pelos torneios de CS:GO",
     },
@@ -58,7 +58,7 @@ const GallerySection = () => {
       id: 6,
       type: "video",
       thumbnail: "https://i.ibb.co/m5xMJkw/furia-fragmovie.jpg",
-      source: "https://www.youtube.com/embed/2gQqR9H_xYs?autoplay=1",
+      source: "https://www.youtube.com/embed/2gQqR9H_xYs",
       title: "FURIA - Top Plays 2023",
       description: "Compilação das melhores jogadas da FURIA em 2023",
     },
@@ -73,7 +73,7 @@ const GallerySection = () => {
       id: 8,
       type: "video",
       thumbnail: "https://i.ibb.co/28j4f5D/furia-clutch.jpg",
-      source: "https://www.youtube.com/embed/qDQm9urCvUo?autoplay=1",
+      source: "https://www.youtube.com/embed/qDQm9urCvUo",
       title: "arT - Momentos de Clutch",
       description: "Jogadas decisivas do capitão arT em momentos cruciais",
     },
@@ -116,8 +116,9 @@ const GallerySection = () => {
                   src={item.thumbnail}
                   alt={item.title}
                   className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                  loading="lazy"
                   onError={(e) => {
-                    // Fallback image if the main one fails to load
+                    console.error(`Failed to load image: ${item.thumbnail}`);
                     (e.target as HTMLImageElement).src = "https://via.placeholder.com/640x360/090909/FFBA49?text=FURIA+CS:GO";
                   }}
                 />
@@ -179,8 +180,9 @@ const GallerySection = () => {
                   src={selectedItem.thumbnail} 
                   alt={selectedItem.title} 
                   className="w-full rounded"
+                  loading="eager"
                   onError={(e) => {
-                    // Fallback image if the main one fails to load
+                    console.error(`Failed to load modal image: ${selectedItem.thumbnail}`);
                     (e.target as HTMLImageElement).src = "https://via.placeholder.com/1280x720/090909/FFBA49?text=FURIA+CS:GO";
                   }}
                 />

@@ -18,6 +18,15 @@ const Hero = () => {
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-furia-dark via-furia-dark to-furia-dark/90"></div>
       
+      {/* FURIA logo background */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-10">
+        <img 
+          src="/lovable-uploads/c87270fc-3fc0-475b-81f7-c5da09c445a2.png" 
+          alt="FURIA Logo Background" 
+          className="w-1/2 max-w-md"
+        />
+      </div>
+      
       {/* Accent line */}
       <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-furia-accent to-transparent"></div>
       
@@ -32,7 +41,7 @@ const Hero = () => {
             conheça os jogadores e viva uma experiência totalmente personalizada.
           </p>
           <div className="flex flex-wrap gap-4">
-            <Link to="/my-experience" className="button-primary">Comece sua experiência</Link>
+            <Link to="/about" className="button-primary">Comece sua experiência</Link>
             <Link to="/about" className="button-secondary">Conheça os jogadores</Link>
           </div>
         </div>

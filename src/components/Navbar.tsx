@@ -15,7 +15,6 @@ const Navbar = () => {
     { name: "Multimídia", path: "/multimedia" },
     { name: "Fórum dos Fãs", path: "/forum" },
     { name: "Chatbot Interativo", path: "/chatbot" },
-    { name: "Minha Experiência FURIA", path: "/my-experience" },
   ];
 
   useEffect(() => {
@@ -38,10 +37,6 @@ const Navbar = () => {
     setIsMenuOpen(false);
   }, [location.pathname]);
 
-  const handleLoginClick = () => {
-    navigate('/my-experience');
-  };
-
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all ${
@@ -54,6 +49,11 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center">
+            <img 
+              src="/lovable-uploads/c87270fc-3fc0-475b-81f7-c5da09c445a2.png" 
+              alt="FURIA Logo" 
+              className="h-9 mr-2" 
+            />
             <span className="font-display text-2xl font-bold text-gradient">FURIA</span>
           </Link>
 
@@ -71,14 +71,6 @@ const Navbar = () => {
               </Link>
             ))}
           </div>
-
-          {/* Login Button */}
-          <button 
-            className="hidden md:block button-primary"
-            onClick={handleLoginClick}
-          >
-            Login
-          </button>
 
           {/* Mobile menu button */}
           <button
@@ -111,12 +103,6 @@ const Navbar = () => {
                   {item.name}
                 </Link>
               ))}
-              <button 
-                className="button-primary mt-2 w-full"
-                onClick={handleLoginClick}
-              >
-                Login
-              </button>
             </div>
           </div>
         </div>

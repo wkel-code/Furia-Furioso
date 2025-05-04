@@ -9,7 +9,6 @@ import About from "./pages/About";
 import Multimedia from "./pages/Multimedia";
 import Forum from "./pages/Forum";
 import Chatbot from "./pages/Chatbot";
-import MyExperience from "./pages/MyExperience";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,7 +25,6 @@ const App = () => (
           <Route path="/multimedia" element={<Multimedia />} />
           <Route path="/forum" element={<Forum />} />
           <Route path="/chatbot" element={<Chatbot />} />
-          <Route path="/my-experience" element={<MyExperience />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
