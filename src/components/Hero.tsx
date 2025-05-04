@@ -19,11 +19,11 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-furia-dark via-furia-dark to-furia-dark/90"></div>
       
       {/* FURIA logo background */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-10">
+      <div className="absolute inset-0 flex items-center justify-center opacity-30">
         <img 
-          src="/lovable-uploads/cd961942-460d-4fe8-acdc-156c36e32658.png" 
+          src="/lovable-uploads/e6caff7e-7d24-4a4b-9827-f13c28926af7.png" 
           alt="FURIA Logo Background" 
-          className="w-1/2 max-w-md"
+          className="w-2/3 max-w-lg"
         />
       </div>
       
