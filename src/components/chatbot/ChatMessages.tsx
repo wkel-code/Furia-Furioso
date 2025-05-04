@@ -18,6 +18,18 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({ messages, isLoading }) => {
     }
   }, [messages]);
 
+  // If there are no messages, show a welcome message
+  if (messages.length === 0 && !isLoading) {
+    return (
+      <div className="flex items-center justify-center h-[500px] text-furia-gray text-center p-4">
+        <div className="max-w-md">
+          <p className="mb-4">Bem-vindo ao chat da FURIA! Pergunte sobre jogadores, estatísticas, próximos jogos ou conquistas do time.</p>
+          <p className="text-sm italic">Exemplo: "Quem é KSCERATO?" ou "Quais são os próximos jogos da FURIA?"</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="p-4 h-[500px] overflow-y-auto flex flex-col space-y-4 scroll-smooth">
       {messages.map((message) => (

@@ -1,6 +1,11 @@
 
 import { Bot, MessageSquareIcon, Trophy } from "lucide-react";
-import { Tooltip } from "@/components/ui/tooltip";
+import { 
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from "@/components/ui/tooltip";
 
 const ChatHeader: React.FC = () => {
   return (
@@ -21,21 +26,36 @@ const ChatHeader: React.FC = () => {
       </div>
       
       <div className="flex space-x-1">
-        <Tooltip title="Informações em tempo real sobre o cenário CS:GO">
-          <div className="text-furia-gray bg-furia-gray/10 p-1.5 rounded-full hover:bg-furia-gray/20">
-            <Trophy size={16} />
-          </div>
-        </Tooltip>
-        <Tooltip title="Suporte oficial via WhatsApp">
-          <a 
-            href="https://wa.me/5511993404466" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-furia-gray bg-furia-gray/10 p-1.5 rounded-full hover:bg-furia-gray/20"
-          >
-            <MessageSquareIcon size={16} />
-          </a>
-        </Tooltip>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="text-furia-gray bg-furia-gray/10 p-1.5 rounded-full hover:bg-furia-gray/20">
+                <Trophy size={16} />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Informações em tempo real sobre o cenário CS:GO</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+        
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <a 
+                href="https://wa.me/5511993404466" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-furia-gray bg-furia-gray/10 p-1.5 rounded-full hover:bg-furia-gray/20"
+              >
+                <MessageSquareIcon size={16} />
+              </a>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Suporte oficial via WhatsApp</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </div>
     </div>
   );
