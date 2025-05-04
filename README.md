@@ -2,7 +2,7 @@
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/fe887cd5-c78d-47c9-8cd9-302277866e2b
+**URL**: furiafurioso.vercel.app
 
 ## How can I edit this code?
 
@@ -10,7 +10,7 @@ There are several ways of editing your application.
 
 **Use Lovable**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/fe887cd5-c78d-47c9-8cd9-302277866e2b) and start prompting.
+Simply visit the furiafurioso.vercel.app and start prompting.
 
 Changes made via Lovable will be committed automatically to this repo.
 
