@@ -1,12 +1,11 @@
 
 import { useState } from "react";
-import { Images, Play, X, Video } from "lucide-react";
+import { Images, X, Video } from "lucide-react";
 
 type MediaItem = {
   id: number;
-  type: "image" | "video";
+  type: "image";
   thumbnail: string;
-  source?: string;
   title: string;
   description: string;
 };
@@ -15,67 +14,63 @@ const GallerySection = () => {
   const [selectedItem, setSelectedItem] = useState<MediaItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Updated media data with direct links to images
+  // Updated media data with direct links to reliable images of FURIA CS:GO
   const mediaItems: MediaItem[] = [
     {
       id: 1,
       type: "image",
-      thumbnail: "https://i.ibb.co/H4LFCyL/furia-major-stage.jpg",
+      thumbnail: "/lovable-uploads/cd961942-460d-4fe8-acdc-156c36e32658.png",
       title: "FURIA vs Astralis - ESL Pro League",
       description: "Time FURIA enfrentando a Astralis na ESL Pro League Season 14",
     },
     {
       id: 2,
       type: "image",
-      thumbnail: "https://i.ibb.co/Dfbp97z/furia-team.jpg",
+      thumbnail: "https://www.vpesports.com/wp-content/uploads/2020/08/FURIA-ESL-ONE-COLOGNE-2020.jpg",
       title: "Equipe FURIA CS:GO",
-      description: "Line-up atual da FURIA Esports na divisão de Counter-Strike",
+      description: "Line-up da FURIA Esports na divisão de Counter-Strike durante ESL One Cologne",
     },
     {
       id: 3,
-      type: "video",
-      thumbnail: "https://i.ibb.co/9yrZjnv/furia-major.jpg",
-      source: "https://www.youtube.com/embed/sqSC4gvRNoU",
+      type: "image",
+      thumbnail: "https://cdn.draft5.gg/images/competitions/pgl-stockholm-2021-furia-feature.jpg",
       title: "FURIA no PGL Major Stockholm",
-      description: "Melhores momentos da FURIA no PGL Major Stockholm 2021",
+      description: "Momento da FURIA no PGL Major Stockholm 2021",
     },
     {
       id: 4,
       type: "image",
-      thumbnail: "https://i.ibb.co/jgK4BWD/furia-celebration.jpg",
+      thumbnail: "https://valorant.draft5.gg/wp-content/uploads/2022/01/FURIA-11.jpg",
       title: "Comemorando a Vitória",
       description: "Jogadores da FURIA celebrando após vitória em partida decisiva",
     },
     {
       id: 5,
-      type: "video",
-      thumbnail: "https://i.ibb.co/Qn0m6Fz/furia-highlight.jpg",
-      source: "https://www.youtube.com/embed/M-P4QwWKmsE",
-      title: "KSCERATO - Highlights",
-      description: "Momentos impressionantes do KSCERATO pelos torneios de CS:GO",
+      type: "image",
+      thumbnail: "https://static.hltv.org/images/galleries/1693-full/1575738541.3263.jpeg",
+      title: "KSCERATO - Destaques",
+      description: "KSCERATO, um dos principais jogadores da FURIA em CS:GO",
     },
     {
       id: 6,
-      type: "video",
-      thumbnail: "https://i.ibb.co/m5xMJkw/furia-fragmovie.jpg",
-      source: "https://www.youtube.com/embed/2gQqR9H_xYs",
+      type: "image",
+      thumbnail: "https://cdn.gamemeca.com/gmdata/0000/174/613/furia_1.jpg",
       title: "FURIA - Top Plays 2023",
-      description: "Compilação das melhores jogadas da FURIA em 2023",
+      description: "Jogadores da FURIA em ação durante campeonato internacional",
     },
     {
       id: 7,
       type: "image",
-      thumbnail: "https://i.ibb.co/K6NVxwV/furia-trophy.jpg",
-      title: "Conquista do Campeonato",
-      description: "FURIA erguendo o troféu após conquista importante",
+      thumbnail: "https://www.theloadout.com/wp-content/sites/theloadout/2021/02/furia-logo.jpg",
+      title: "DreamHack Open Winter 2020",
+      description: "FURIA na conquista do título da DreamHack Open Winter 2020",
     },
     {
       id: 8,
-      type: "video",
-      thumbnail: "https://i.ibb.co/28j4f5D/furia-clutch.jpg",
-      source: "https://www.youtube.com/embed/qDQm9urCvUo",
+      type: "image",
+      thumbnail: "https://static.hltv.org/images/galleries/12209-medium/1571016335.6666.jpeg",
       title: "arT - Momentos de Clutch",
-      description: "Jogadas decisivas do capitão arT em momentos cruciais",
+      description: "Capitão arT durante partidas importantes representando a FURIA",
     },
   ];
 
@@ -122,27 +117,14 @@ const GallerySection = () => {
                     (e.target as HTMLImageElement).src = "https://via.placeholder.com/640x360/090909/FFBA49?text=FURIA+CS:GO";
                   }}
                 />
-                {item.type === "video" && (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="bg-furia-dark/40 p-4 rounded-full">
-                      <Play size={32} className="text-furia-accent" />
-                    </div>
-                  </div>
-                )}
               </div>
               <div className="p-4">
                 <h3 className="font-display text-xl font-semibold">{item.title}</h3>
                 <p className="text-furia-gray mt-1 text-sm">{item.description}</p>
                 <div className="mt-2 flex items-center text-sm">
-                  {item.type === "video" ? (
-                    <span className="flex items-center text-furia-accent">
-                      <Video size={14} className="mr-1" /> Vídeo
-                    </span>
-                  ) : (
-                    <span className="flex items-center text-furia-light">
-                      <Images size={14} className="mr-1" /> Imagem
-                    </span>
-                  )}
+                  <span className="flex items-center text-furia-light">
+                    <Images size={14} className="mr-1" /> Imagem
+                  </span>
                 </div>
               </div>
             </div>
@@ -175,35 +157,16 @@ const GallerySection = () => {
               </button>
             </div>
             <div className="p-4">
-              {selectedItem.type === "image" ? (
-                <img 
-                  src={selectedItem.thumbnail} 
-                  alt={selectedItem.title} 
-                  className="w-full rounded"
-                  loading="eager"
-                  onError={(e) => {
-                    console.error(`Failed to load modal image: ${selectedItem.thumbnail}`);
-                    (e.target as HTMLImageElement).src = "https://via.placeholder.com/1280x720/090909/FFBA49?text=FURIA+CS:GO";
-                  }}
-                />
-              ) : (
-                <div className="relative aspect-video">
-                  {selectedItem.source ? (
-                    <iframe
-                      src={selectedItem.source}
-                      title={selectedItem.title}
-                      className="w-full h-full rounded"
-                      allowFullScreen
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    ></iframe>
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center bg-furia-gray/20 rounded">
-                      <Play size={48} className="text-furia-accent" />
-                      <p className="absolute bottom-4 text-sm text-furia-light">Vídeo indisponível</p>
-                    </div>
-                  )}
-                </div>
-              )}
+              <img 
+                src={selectedItem.thumbnail} 
+                alt={selectedItem.title} 
+                className="w-full rounded"
+                loading="eager"
+                onError={(e) => {
+                  console.error(`Failed to load modal image: ${selectedItem.thumbnail}`);
+                  (e.target as HTMLImageElement).src = "https://via.placeholder.com/1280x720/090909/FFBA49?text=FURIA+CS:GO";
+                }}
+              />
               <p className="mt-4 text-furia-gray">{selectedItem.description}</p>
             </div>
           </div>

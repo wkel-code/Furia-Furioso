@@ -16,7 +16,7 @@ const ChatbotWidget = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "welcome",
-      content: "Olá! Sou o FURIA Bot. Como posso ajudar você hoje? Se preferir falar com um atendente humano, acesse nosso WhatsApp.",
+      content: "Olá! Sou o FURIA Bot. Como posso ajudar você hoje? Se preferir falar com um atendente humano, acesse nosso WhatsApp: https://wa.me/5511993404466",
       sender: "bot",
       timestamp: new Date(),
     },
@@ -40,10 +40,10 @@ const ChatbotWidget = () => {
     // Simulating bot response after a delay
     setTimeout(() => {
       const responseOptions = [
-        "Desculpe, não consigo processar essa informação agora. Para mais detalhes, entre em contato com nossa equipe pelo WhatsApp.",
-        "Você pode encontrar mais informações sobre isso na seção 'Sobre a FURIA'. Caso precise de ajuda adicional, contate-nos pelo WhatsApp.",
-        "Estamos trabalhando para melhorar nossas respostas. Para atendimento personalizado, utilize nosso WhatsApp.",
-        "Esta funcionalidade está em desenvolvimento. Para assistência imediata, use nosso canal de WhatsApp."
+        "Desculpe, não consigo processar essa informação agora. Para mais detalhes, entre em contato com nossa equipe pelo WhatsApp: https://wa.me/5511993404466",
+        "Você pode encontrar mais informações sobre isso na seção 'Sobre a FURIA'. Caso precise de ajuda adicional, contate-nos pelo WhatsApp: https://wa.me/5511993404466",
+        "Estamos trabalhando para melhorar nossas respostas. Para atendimento personalizado, utilize nosso WhatsApp: https://wa.me/5511993404466",
+        "Esta funcionalidade está em desenvolvimento. Para assistência imediata, use nosso canal de WhatsApp: https://wa.me/5511993404466"
       ];
 
       const botResponse: Message = {

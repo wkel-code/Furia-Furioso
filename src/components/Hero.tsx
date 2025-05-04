@@ -21,7 +21,7 @@ const Hero = () => {
       {/* FURIA logo background */}
       <div className="absolute inset-0 flex items-center justify-center opacity-10">
         <img 
-          src="/lovable-uploads/c87270fc-3fc0-475b-81f7-c5da09c445a2.png" 
+          src="/lovable-uploads/cd961942-460d-4fe8-acdc-156c36e32658.png" 
           alt="FURIA Logo Background" 
           className="w-1/2 max-w-md"
         />
@@ -42,7 +42,7 @@ const Hero = () => {
           </p>
           <div className="flex flex-wrap gap-4">
             <Link to="/about" className="button-primary">Comece sua experiência</Link>
-            <Link to="/about" className="button-secondary">Conheça os jogadores</Link>
+            <Link to="/multimedia" className="button-secondary">Conheça os jogadores</Link>
           </div>
         </div>
       </div>
